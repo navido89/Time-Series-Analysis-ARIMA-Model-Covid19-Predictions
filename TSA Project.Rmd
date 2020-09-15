@@ -1,0 +1,246 @@
+---
+title: "COMP-4442 Time Series Analysis Project"
+author: "William Schneider, Navid Mashinchi, Chris Nguyen"
+output:
+  word_document: default
+  pdf_document: default
+  html_document:
+    df_print: paged
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Enter libraries in here that we need. 
+library(ggplot2)
+library(tidyverse)
+# install.packages("zoo")
+library(zoo)
+# install.packages("aTSA")
+library(aTSA)
+# install.packages("tseries")
+library(tseries)
+# install.packages("forecast")
+library(forecast)
+# install.packages("lubridate")
+library(lubridate)
+
+
+```
+
+When can we not us Time Series Analysis?
+
+a.) When our y values or data points are always constant. 
+
+```{r}
+
+months <- c("Jan","Feb","Mar","Apr","May","June","Jul","Aug","Sep","Oct","Nov","Dec")
+df <- data.frame()
+ggplot(df) + geom_point() + ylim(0, 100) + scale_x_discrete(limits = months)+ xlab("Months") + ylab("Outcome Variable") +geom_hline(yintercept=50, 
+                color = "red", size=1)+ggtitle("Constant Y Values")
+
+```
+
+b.) When our y values represent a known function like sin(x).
+
+```{r}
+
+t=seq(-10,10,0.1)
+y=sin(t)
+qplot(t,y,geom="path", xlab="time", ylab="Sine wave", col = "red")+  coord_cartesian(ylim=c(-5,5))+geom_hline(yintercept=0, 
+                color = "black", size=1)+geom_vline(xintercept=0, 
+                color = "black", size=1)+ggtitle("sin(x) Function")+theme(legend.position = "none")
+```
+c.) When our data is not stationary. For our data to be stationary, we have to check the following conditions.
+
+i.) Mean has to be constant according to the time.
+ii.) Variance should be equal in different time intervals from the mean.In other words the distance of the points should be the same from the mean.
+iii.) Covariance should also be equal.
+
+If all 3 conditions are met. Then we can apply Time Series Analysis.
+
+```{r}
+
+# Load the csv file first.
+dat <- read.csv("owid-covid-data.csv")
+
+class(dat$date)
+# [1] "factor"
+
+# Here we change the date column into a date type.
+dat$date <- as.Date(dat$date)
+class(dat$date)
+# [1] "Date"
+
+
+# We pick the US rows only.
+dat_US <- dat[dat$location == "United States",c(3,4,7,8)]
+
+p <- ggplot(dat_US, aes(x=date, y=new_deaths)) +
+  geom_line() + scale_x_date(date_breaks = "1 month", date_labels = "%b") +
+  xlab("Months") + ylab("New Deaths")+ggtitle("Number of deaths in the US")+geom_area(fill="lightblue", color="black")
+p
+
+# Let plot the mean to check the first condition if our data is stationary or not.
+p + geom_smooth(method = lm, col = "red", se = FALSE)
+
+#geom_smooth(method = "lm",se = FALSE, col = "red")
+
+```
+
+4.) Components of Time Series Algorithm
+
+There are three components that we need to understand when it comes to Time Series Analysis.
+
+There are 3 components that we will pay our attention to.
+a.) General Trend
+b.) Seasonal
+c.) Irregular Fluctuations. 
+
+a.) A general trend tells us how are values are behaving. Are they decreasing or increasing? 
+
+```{r}
+
+p1 <- ggplot(dat_US, aes(x=date, y=total_deaths)) +
+  geom_line() + scale_x_date(date_breaks = "1 month", date_labels = "%b") +
+  xlab("Months") + ylab("Aggregate Number of Deaths")+ggtitle("Trend Line")+geom_area(fill="red", color="black")
+p1
+
+# Here we can see the aggregate numbers of death.
+dat_US$total_deaths
+
+```
+
+Here we can see that we have an increasing trend. When looking at the values, we can also see that our deaths are increasing. 
+
+No code required for b and c. Please see explanation for seasonal component and irregular fluctuation in the paper on page 6. 
+
+Time Series Analysis Demo: Our research question is: What is the projected number of deaths in 3 weeks and 3 months. 
+
+```{r}
+
+# Change the data to zoo type
+dat_US_Analysis <- dat_US[,c(2,4)]
+dat_demo <- zoo(dat_US_Analysis$new_deaths, seq(from = as.Date("2019-12-31"), to = as.Date("2020-08-01"), by = 1))
+
+class(dat_demo)
+
+summary(dat_demo)
+
+plot((dat_demo))
+
+# Make the data stationary, by differencing the data.
+stationary_data <- diff(dat_demo)
+plot(stationary_data)
+
+# To check if it's stationary we conduct a quantitative test. We use the Augmented Dickey-Fuller Test.
+# H_0 = The null hypothesis for this test is that there is a unit root.
+# H_A = The alternative hypothesis is that the time series is stationary (or trend-stationary).
+adf.test(as.matrix(stationary_data)) #-- ?
+
+# We select a significance level of 0.05 and since our p-value is 0.01 and smaller then 0.05, we come to the conclusion to reject the null hypothesis. In other words our data is stationary. 
+
+```
+
+We know conduct the modeling. We are going to use the ARIMA model to do the Time Series Analysis. 
+
+The ARIMA model forecasts based on it's previous values and it has 3 parameters. The parameters are (p,d,g), which we will need to do our forecasting. 
+For further explanation please refer to the paper on page 8 and 9.
+
+We have to find our values p,d and g. Next we demonstrate how to find those values.
+
+```{r}
+# We use the Auto Correlation Graph
+
+# First we have a look at our acf graph when our data isn't stationary.
+acf(dat_demo)
+# Here we see that our values are all exceeding the blue line. The goal is to have the values under the blue line and they should be inverted as well.
+
+# To select the p and q values we select the number before the first inverted line.
+acf(stationary_data) 
+pacf(stationary_data) 
+plot(stationary_data)
+
+# arima has a auto.arima function which gives us the ideal arima model based on our data.
+arima_funct <- auto.arima(stationary_data)
+arima_funct
+
+# lets use the auto.arima function to forecast 3 weeks
+
+forecast1 <- forecast(arima_funct, h=21)
+additional_deaths <- round(sum(forecast1$upper[,2]),0)
+# [1] 18589
+
+total_number_of_deaths <- round(sum(dat_US_Analysis$new_deaths)+additional_deaths,0)
+# [1] 171903
+
+# lets use the auto.arima function to forecast 3 months
+forecast2 <- forecast(object = arima_funct, h = 90)
+additional_deaths2 <- round(sum(forecast2$upper[,2]),0)
+# [1] 82653
+
+total_number_of_deaths2 <- round(sum(dat_US_Analysis$new_deaths)+additional_deaths2,0)
+# [1] 235967
+plot(forecast1)
+
+```
+Below we are just adding the dates and make changes to the x axis for the projected graphs.
+
+```{r}
+
+delta <- (forecast1$lower[,2]+forecast1$upper[,2])/2
+
+predicted_21 <- data.frame(date=seq(from=18476,by=1,length=21),new_deaths=delta)
+original <- data.frame(date=as.numeric(dat_US_Analysis$date),new_deaths=c(0,stationary_data))
+z <- rbind(original,predicted_21)
+z$date <- as.Date(z$date)
+
+
+forecast1_data <- as.data.frame(forecast1)
+forecast1_data <- data.frame(date=seq(from=18476,by=1,length=21),forecast1_data, y = delta)
+forecast1_data$date <- as.Date(forecast1_data$date)
+
+graph <- ggplot(data=z,aes(x=date,y=new_deaths),show.legend = FALSE)+
+  theme(axis.text.x=element_text(angle=60, hjust=1))+
+  geom_line(data=original,aes(x=as.Date(date),y=new_deaths))+
+  geom_ribbon(data=forecast1_data,aes(x = date,ymin =Lo.95, ymax =Hi.95), inherit.aes = FALSE,fill = "lightsteelblue2")+
+  geom_ribbon(data=forecast1_data,aes(x = date,ymin =Lo.80, ymax =Hi.80), inherit.aes = FALSE,fill = "lightsteelblue3")+
+  geom_line(data=forecast1_data,aes(x=date,y=y),size=1,color='purple')+
+  ggtitle("Forecasts from ARIMA(3,0,2) with zero mean")+
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y")+
+  labs(x="Date",y="New Deaths")
+
+
+
+graph 
+```
+
+```{r}
+delta2 <- (forecast2$lower[,2]+forecast2$upper[,2])/2
+
+predicted_22 <- data.frame(date=seq(from=18476,by=1,length=nrow(forecast2$lower)),new_deaths=delta2) # prediction from ARIMA
+original <- data.frame(date=as.numeric(dat_US_Analysis$date),new_deaths=c(0,stationary_data)) # Previous Observations 
+z2 <- rbind(original,predicted_22) # combine the two data sets
+z2$date <- as.Date(z2$date) # convert numeric column to date (creating the base layer of ggplot)
+
+forecast2_data <- as.data.frame(forecast2) # convert forecast data into data.frame
+forecast2_data <- data.frame(date=seq(from=18476,by=1,length=90),forecast2_data, y = delta2) #add a date and delta of Lo.95 & Hi.95
+forecast2_data$date <- as.Date(forecast2_data$date) # covert to date 
+
+graph <- ggplot(data=z2,aes(x=date,y=new_deaths),show.legend = FALSE)+
+  theme(axis.text.x=element_text(angle=60, hjust=1))+
+  geom_line(data=original,aes(x=as.Date(date),y=new_deaths))+
+  geom_ribbon(data=forecast2_data,aes(x = date,ymin =Lo.95, ymax =Hi.95), inherit.aes = FALSE,fill = "lightsteelblue2")+
+  geom_ribbon(data=forecast2_data,aes(x = date,ymin =Lo.80, ymax =Hi.80), inherit.aes = FALSE,fill = "lightsteelblue3")+
+  geom_line(data=forecast2_data,aes(x=date,y=y),size=1,color='purple')+
+  ggtitle("Forecasts from ARIMA(3,0,2) with zero mean")+
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y")+
+  labs(x="Date",y="New Deaths")
+
+
+
+graph 
+```
+
