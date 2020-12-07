@@ -8,4 +8,4 @@
 
 + Between August 1st and November 1st my model projected 235,967 deaths and CNN projected 231,000 deaths. Actual death number according to Worldometer was 236,072.
 
-Built with R and the following libraries: ggplot2, tidyverse, zoo, aTSA, ggplot2tseries, forecast, lubridate
++ Built with R and the following libraries: ggplot2, tidyverse, zoo, aTSA, ggplot2tseries, forecast, lubridate
