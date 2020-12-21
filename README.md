@@ -8,8 +8,11 @@
 <a href="https://towardsdatascience.com/predicting-number-of-covid19-deaths-using-time-series-analysis-arima-model-4ad92c48b3ae" target="_blank">Read Article</a>
 
 ## Project Objective: 
-The purpose of this project is to predict the number of deaths in the US starting from August 1st – August 21st and August 1st – November 1st. We also compare our results with the projections that have been made by CNN.
-
+The purpose of this project is to get a deeper understanding of Time Series Analaysis so we can solve the following problem: 
++ How many people are going to die due to Covid19 in the United States from August 1st — August 21st and August 1st — November 1st.
+<br>
+We compare our results with the projections that have been made by CNN.
+<br>
 <img src="images/CNN_Projection2.png">
 <img src="images/CNN_Projection1.jpg">
 
@@ -30,7 +33,6 @@ The purpose of this project is to predict the number of deaths in the US startin
 + lubridate
 
 ## Project Description:
-+ Research Question: How many people are going to die due to Covid19 in the United States from August 1st — August 21st and August 1st — November 1st .
 + Data Source: Used the data set from "Our World in Data", which consisted of 34033 rows and 34 columns. 
 + Feature engineered the date column and transformed the class from a factor to date. 
 + In regards to data cleaning, I selected the US data points. 
