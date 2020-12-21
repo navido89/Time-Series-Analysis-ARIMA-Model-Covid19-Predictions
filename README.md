@@ -10,7 +10,7 @@
 ## Project Objective <a name="Project Objective"></a>: 
 The purpose of this project is to get a deeper understanding of Time Series Analaysis so we can solve the following problem: 
 + How many people are going to die due to Covid19 in the United States from August 1st — August 21st and August 1st — November 1st.
-<br>
+
 We compare our results with the projections that have been made by CNN.
 <br>
 <img src="images/CNN_Projection2.png">
