@@ -13,8 +13,8 @@ The purpose of this project is to get a deeper understanding of Time Series Anal
 
 We compare our results with the projections that have been made by CNN.
 <br>
-<img src="images/CNN_Projection2.png">
 <img src="images/CNN_Projection1.jpg">
+<img src="images/CNN_Projection2.png">
 
 ## Methods Used
 + Time Series Analysis 
