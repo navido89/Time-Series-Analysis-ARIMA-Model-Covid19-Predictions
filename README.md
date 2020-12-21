@@ -1,3 +1,7 @@
+<img src="markdownmonstericon.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
+
 # Predicting number of Covid19 deaths using Time Series Analysis (ARIMA MODEL) 
 
 + A Time Series Analysis (ARIMA Model) was used to predict the number of deaths in the US starting from August 1st – August 21st and August 1st – November 1st. The goal of this project was to compare our results with the projections that have been made by CNN and to get a deeper understanding of Time Series Analysis.
