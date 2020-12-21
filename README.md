@@ -48,7 +48,7 @@ We compare our results with the projections that have been made by CNN.
 <img src="images/Screen_Shot2.png">
 
 ## Getting Started:
-+ Clone this repo <a href="https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository" target="_blank">(for help see this tutorial).</a>.
++ Clone this repo <a href="https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository" target="_blank">(for help see this tutorial).</a>
 + Raw Data is being kept in this repo. File name is "owid-covid-data.csv".
 + Data processing/transformation script is being kept in this repo. Notebook file name is "Predicting number of Covid19 deaths using Time Series Analysis (ARIMA MODEL)¶.ipynb"
 
