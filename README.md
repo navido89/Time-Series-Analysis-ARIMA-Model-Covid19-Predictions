@@ -81,6 +81,6 @@ We compare our results with the projections that have been made by CNN.
 [(Back to top)](#table-of-contents)
 + Clone this repo <a href="https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository" target="_blank">(for help see this tutorial).</a>
 + Raw Data is being kept in this repo. <a href="https://github.com/navido89/Time-Series-Analysis-ARIMA-Model-Covid19-Predictions/blob/master/owid-covid-data.csv" target="_blank">Click here for raw data.</a>
-+ Data processing/transformation script is being kept in this repo. <a href="https://github.com/navido89/Time-Series-Analysis-ARIMA-Model-Covid19-Predictions/blob/master/Predicting%20number%20of%20Covid19%20deaths%20using%20Time%20Series%20Analysis%20(ARIMA%20MODEL)%C2%B6/eba2.ipynb" target="_blank">Click here for notebook.</a>
++ Data processing/transformation script is being kept in this repo. <a href="https://github.com/navido89/Time-Series-Analysis-ARIMA-Model-Covid19-Predictions/blob/master/Predicting%20number%20of%20Covid19%20deaths%20using%20Time%20Series%20Analysis%20(ARIMA%20MODEL)%C2%B6.ipynb" target="_blank">Click here for notebook.</a>
 
 
