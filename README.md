@@ -7,7 +7,7 @@
 <br>
 <a href="https://towardsdatascience.com/predicting-number-of-covid19-deaths-using-time-series-analysis-arima-model-4ad92c48b3ae" target="_blank">Read Article</a>
 
-# Table of contents
+## Table of contents
 - [Project Objective](#project-objective)
 - [Methods Used](#methods-used)
 - [Technologies](#technologies)
@@ -17,6 +17,7 @@
 
 ## Project Objective
 [(Back to top)](#table-of-contents)
+<br>
 The purpose of this project is to get a deeper understanding of Time Series Analysis so we can solve the following problem: 
 + How many people are going to die due to Covid19 in the United States from August 1st — August 21st and August 1st — November 1st.
 
