@@ -9,9 +9,14 @@
 
 # Table of contents
 - [Project Objective](#project-objective)
-- [Demo-Preview](#demo-preview)
+- [Methods Used](#methods-used)
+- [Technologies](#technologies)
+- [Project Description](#project-description)
+- [Project Results](#project-results)
+- [Installation](#installation)
 
-## Project Objective <a name="Project Objective"></a>: 
+## Project Objective
+[(Back to top)](#table-of-contents)
 The purpose of this project is to get a deeper understanding of Time Series Analysis so we can solve the following problem: 
 + How many people are going to die due to Covid19 in the United States from August 1st — August 21st and August 1st — November 1st.
 
@@ -21,12 +26,14 @@ We compare our results with the projections that have been made by CNN.
 <img src="images/CNN_Projection2.png">
 
 ## Methods Used
+[(Back to top)](#table-of-contents)
 + Time Series Analysis 
 + Arima Model
 + Data Visualization
 + Data Cleaning 
 
 ## Technologies:
+[(Back to top)](#table-of-contents)
 + R
 + ggplot2
 + tidyverse
@@ -37,6 +44,7 @@ We compare our results with the projections that have been made by CNN.
 + lubridate
 
 ## Project Description:
+[(Back to top)](#table-of-contents)
 + Data Source: Used the data set from "Our World in Data", which consisted of 34033 rows and 34 columns. See features below: 
 <img src="images/Variables.png">
 
@@ -57,6 +65,7 @@ We compare our results with the projections that have been made by CNN.
 <img src="images/Arima-Model.png">
 
 ## Project Results:
+[(Back to top)](#table-of-contents)
 + Final model projected 18589 deaths and CNN projected 19000 deaths between August 1st and August 21st.
 <img src="images/Screen_Shot1.png">
 
