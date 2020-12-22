@@ -35,13 +35,17 @@ We compare our results with the projections that have been made by CNN.
 ## Project Description:
 + Data Source: Used the data set from "Our World in Data", which consisted of 34033 rows and 34 columns. 
 <img src="images/Variables.png">
+
 + Feature engineered the date column and transformed the class from a factor to date. 
 + In regard to data cleaning, I selected the US data points. 
+
 + Implemented the differencing technique to make our data stationary in order to conduct a time series analysis. 
 <img src="images/Non-Stationary.png">
 <img src="images/Stationary.png">
+
 + Applied the Augmented Dickey-Fuller Test to make sure our data is stationary.
 <img src="images/Aug-Dickey-F-Test.png">
+
 + Used the ARIMA model and its auto.arima function to conduct our projection.
 <img src="images/Arima-Model.png">
 
