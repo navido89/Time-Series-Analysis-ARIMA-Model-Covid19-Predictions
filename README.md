@@ -33,17 +33,20 @@ We compare our results with the projections that have been made by CNN.
 + lubridate
 
 ## Project Description:
-+ Data Source: Used the data set from "Our World in Data", which consisted of 34033 rows and 34 columns. See variables below: 
++ Data Source: Used the data set from "Our World in Data", which consisted of 34033 rows and 34 columns. See features below: 
 <img src="images/Variables.png">
 
 + Feature engineered the date column and transformed the class from a factor to date. 
 + In regard to data cleaning, I selected the US data points. 
 
-+ Implemented the differencing technique to make our data stationary in order to conduct a time series analysis. 
++ Implemented the differencing technique to make our data stationary in order to conduct a time series analysis. See transformation below. From non-stationary to stationary.
 <img src="images/Non-Stationary.png">
 <img src="images/Stationary.png">
 
-+ Applied the Augmented Dickey-Fuller Test to make sure our data is stationary.
++ In order to check if our data is now stationary, we conducted the Augmented Dickey-Fuller Test, which tells us if our data is stationary or not.
+  + H_0: The null hypothesis is that there is a unit root.
+  + H_A: The alternative hypothesis is that the time series is stationary.
+  + The p-value of our test was 0.01 on a significance level of 0.05. Hence, we rejected the null hypothesis. In other words, our data is now stationary and we can   proceed with the analysis.
 <img src="images/Aug-Dickey-F-Test.png">
 
 + Used the ARIMA model and its auto.arima function to conduct our projection.
