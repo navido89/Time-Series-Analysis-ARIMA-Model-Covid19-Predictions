@@ -1,6 +1,5 @@
 <img src="images/coronavirus-covid.png">
-![GitHub last commit](https://github.com/navido89/Time-Series-Analysis-ARIMA-Model-Covid19-Predictions)
-![GitHub](https://github.com/navido89/Time-Series-Analysis-ARIMA-Model-Covid19-Predictions)
+![GitHub last commit](https://img.shields.io/github/last-commit/navido89/Time-Series-Analysis-ARIMA-Model-Covid19-Predictions)
 
 # Predicting number of Covid19 deaths using Time Series Analysis (ARIMA MODEL) 
 **Project Status: Completed**
