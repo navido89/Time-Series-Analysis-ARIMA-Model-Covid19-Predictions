@@ -33,7 +33,7 @@ We compare our results with the projections that have been made by CNN.
 + lubridate
 
 ## Project Description:
-+ Data Source: Used the data set from "Our World in Data", which consisted of 34033 rows and 34 columns. 
++ Data Source: Used the data set from "Our World in Data", which consisted of 34033 rows and 34 columns. See variables below: 
 <img src="images/Variables.png">
 
 + Feature engineered the date column and transformed the class from a factor to date. 
