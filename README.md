@@ -7,6 +7,10 @@
 <br>
 <a href="https://towardsdatascience.com/predicting-number-of-covid19-deaths-using-time-series-analysis-arima-model-4ad92c48b3ae" target="_blank">Read Article</a>
 
+# Table of contents
+- [Project Objective](#project-objective)
+- [Demo-Preview](#demo-preview)
+
 ## Project Objective <a name="Project Objective"></a>: 
 The purpose of this project is to get a deeper understanding of Time Series Analysis so we can solve the following problem: 
 + How many people are going to die due to Covid19 in the United States from August 1st — August 21st and August 1st — November 1st.
@@ -60,6 +64,7 @@ We compare our results with the projections that have been made by CNN.
 <img src="images/Screen_Shot2.png">
 
 ## Installation:
+[(Back to top)](#table-of-contents)
 + Clone this repo <a href="https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository" target="_blank">(for help see this tutorial).</a>
 + Raw Data is being kept in this repo. <a href="https://github.com/navido89/Time-Series-Analysis-ARIMA-Model-Covid19-Predictions/blob/master/owid-covid-data.csv" target="_blank">Click here for raw data.</a>
 + Data processing/transformation script is being kept in this repo. <a href="https://github.com/navido89/Time-Series-Analysis-ARIMA-Model-Covid19-Predictions/blob/master/Predicting%20number%20of%20Covid19%20deaths%20using%20Time%20Series%20Analysis%20(ARIMA%20MODEL)%C2%B6.ipynb" target="_blank">Click here for notebook.</a>
